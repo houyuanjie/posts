@@ -30,7 +30,7 @@ enum LightColor(
     extends LightColor("0x00FF00")
 ```
 
-这样, 我们让 String 类型值的个数 (可以想象, 世间有极大量的字符串) 大大减少到了固定的 3 个, 组合成一个新的类型, 我们使用这个新的更具体交通信号灯颜色类型也就不再需要关心那个更笼统的 String 类型
+这样, 我们让 String 类型值的个数 (可以想象, 世间存在有极大量的字符串) 大大减少到了固定的 3 个, 组合成一个新的类型, 我们使用这个新的更具体交通信号灯颜色类型也就不再需要关心那个更笼统的 String 类型
 
 其次是类型单一的问题, 同样还是这个例子: 交通信号灯除了颜色还有当前倒数的秒数, 我们假设信号灯最多数 70 下, 只用 `LightColor` 显然不够, 于是我们引入了所谓的 "元组"
 
@@ -85,7 +85,7 @@ count[Light]
 
 上面的过程只是帮助进行理解, "ADT" 在学术上有着严格的定义和推导过程, 我们无需关心那些纸片, 写好自己的程序即可
 
-类比想想, 我们就会发现出了枚举, 那些 `sealed trait`, `sealed class`, `sealed interface` 都是和类型, 而那些 `case class`, `record`, `data class` 都是积类型
+类比想想, 我们就会发现除了枚举, 那些 `sealed trait`, `sealed class`, `sealed interface` 都是和类型, 而那些 `case class`, `record`, `data class` 都是积类型
 
 上一篇 [Typeclass 编程模式](./Typeclass%20%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F.md) 中的猫狗动物也是代数数据类型
 
@@ -106,7 +106,7 @@ case class Dog(
 ) extends Animal
 ```
 
-现在, 我想引入一个新的格式化操作 `stringify`, 它能通用地将数据格式化成能打印到控制台的字符串
+现在, 假设我想引入一个新的格式化操作 `stringify`, 它能通用地将数据格式化成能打印到控制台的字符串
 
 ```scala
 trait Stringify[T]:
@@ -125,7 +125,7 @@ given Stringify[Int] =
 
 再借助基本类型实现组合类型, 这些组合类型因为没有什么特殊性, 我们希望能用工具自动实现, shapeless 就是一个能帮助我们自动为代数数据类型生成类型类实现的工具
 
-下面注释中的 shapeless 代码仅作为展示
+下面注释中的 shapeless 代码仅作为展示, 你无需知道 shapeless 要怎么使用
 
 ```scala
 import shapeless3.deriving.*
@@ -164,7 +164,7 @@ inline def autoGen[T](using
   )
 ```
 
-有了自动生成类型类, 我们程序员从这种无聊/重复的 **@Override** 中解脱出来, 真正有时间写一些有价值的 (业务的) 代码
+有了自动生成类型类, 我们程序员就能从那种无聊的/重复的 **@Override** 中解脱出来, 真正有时间写一些有价值的 (业务的) 代码
 
 
 ```scala
@@ -190,9 +190,9 @@ def run(): Unit =
   // Dog(name=Papi, age=5)
 ```
 
-现在我来告诉你代数在什么时候起作用
+那现在我来告诉你上面这个例子中, 代数是在什么时候起的作用
 
-想知道 shapeless 的原理吗? 当我们使用 `autoGen[Animal]` 时, shapeless 就能通过一些编译器提供的信息知道 `Animal` 是一个 `sealed trait`, 属于 "和类型", 需要在所有的 `autoGen[Cat]`, `autoGen[Dog]`, `autoGen[Turtle]` 中进行搜索, 这实际上是一个 **树**; 但当具体确定到 `autoGen[Dog]` 后, `Dog` 是一个 `case class`, 属于 "积类型", `Dog` 的类型实际上是一个类似 `(String, (Int, ^))` 的 **列表**, 只要依次取头结点就可以; 尽管现实中的 ADT 可以很复杂, 嵌套定义多层, 但回想到其无外乎"和""积"两种, 我们就能在其上派生任何想要的操作
+shapeless 的原理大致是这样的: 当我们使用 `autoGen[Animal]` 时, shapeless 就能通过一些编译器提供的信息知道 `Animal` 是一个 `sealed trait`, 属于 "和类型", 需要在所有的 `autoGen[Cat]`, `autoGen[Dog]`, `autoGen[Turtle]` 中进行搜索, 这实际上是一个 **树**; 但当具体确定到 `autoGen[Dog]` 后, `Dog` 是一个 `case class`, 属于 "积类型", `Dog` 的类型实际上是一个类似 `(String, (Int, ^))` 的 **列表**, 只要依次取头结点就可以; 尽管现实中的 ADT 可以很复杂, 嵌套定义多层, 但回想到其无外乎"和""积"两种, 我们就能在其上派生任何想要的操作
 
 ## 一些我自己的想法
 
