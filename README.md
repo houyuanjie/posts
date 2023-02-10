@@ -8,5 +8,5 @@
 
 用一些浅显通俗的例子讲讲函数式编程中的常见要素
 
-- [Typeclass 编程模式](./Typeclass%20%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F.md)
-- [代数数据类型 ADT](./%E4%BB%A3%E6%95%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20ADT.md)
+- [Typeclass 编程模式](./%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/Typeclass%20%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F.md)
+- [代数数据类型 ADT](./%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E4%BB%A3%E6%95%B0%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20ADT.md)
