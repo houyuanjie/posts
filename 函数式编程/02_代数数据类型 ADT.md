@@ -1,6 +1,6 @@
 # 代数数据类型 ADT
 
-在上一篇 [Typeclass 编程模式](./Typeclass%20%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F.md) 中, 我们认识到有必要将操作与数据分离, 提取到 typeclass 中, 而 ADT (Algebraic Datatype) 则单纯地用于承载数据; 你可能觉得这类似于 POJO 或者结构体, 继续看下去, 你将会得到一个看待数据类型的全新视角
+在上一篇 [Typeclass 编程模式](./01_Typeclass%20%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F.md) 中, 我们认识到有必要将操作与数据分离, 提取到 typeclass 中, 而 ADT (Algebraic Datatype) 则单纯地用于承载数据; 你可能觉得这类似于 POJO 或者结构体, 继续看下去, 你将会得到一个看待数据类型的全新视角
 
 ## 常见的数据类型
 
@@ -87,7 +87,7 @@ count[Light]
 
 类比想想, 我们就会发现除了枚举, 那些 `sealed trait`, `sealed class`, `sealed interface` 都是和类型, 而那些 `case class`, `record`, `data class` 都是积类型
 
-上一篇 [Typeclass 编程模式](./Typeclass%20%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F.md) 中的猫狗动物也是代数数据类型
+上一篇 [Typeclass 编程模式](./01_Typeclass%20%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F.md) 中的猫狗动物也是代数数据类型
 
 ```scala
 sealed trait Animal:
